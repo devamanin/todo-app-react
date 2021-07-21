@@ -1,12 +1,14 @@
-import React, {useState} from "react";
+import React, {useState, useRef} from "react";
 
 import './todo.css'
 export default function Todo(props) {
+  const changecolor = useRef(null)
     let [title, setTitle] = useState("")
     let [description, setDesc] = useState("")
     let addTodoBut = (e) =>{
         e.preventDefault();
         if (title === "" || description === ""){
+
         }
         else{
             props.addtodo(e, title, description);
@@ -28,6 +30,8 @@ export default function Todo(props) {
             aria-describedby="emailHelp"
             value={title}
             onChange = {(e)=>{setTitle(e.target.value)}}
+            required
+            ref={changecolor}
           />
         </div>
         <div className="mb-3">
@@ -40,6 +44,7 @@ export default function Todo(props) {
             value={description}
             onChange = {(e)=>{setDesc(e.target.value)}}
             style = {{height:'120px', resize:'none'}}
+            required
           />
         </div>
         <button type="submit" className="btn btn-primary" onClick={(e)=>{addTodoBut(e)}}>
